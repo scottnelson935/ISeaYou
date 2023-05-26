@@ -24,7 +24,7 @@ body {
 }
 
 .fade p {
-  font-family:'Times New Roman', Times, serif;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 3em;
   color: rgb(155, 155, 155);
 }
@@ -42,4 +42,8 @@ body {
 .active {
   opacity: 1;
   z-index: 1;
+}
+
+#div2 {
+  width: 100vw;
 }
