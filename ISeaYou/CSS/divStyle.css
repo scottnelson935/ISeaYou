@@ -4,7 +4,8 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  background-color: black;
+  background-color: white;
+  
 }
 
 .container {
@@ -26,17 +27,21 @@ body {
 .fade p {
   font-family: 'Times New Roman', Times, serif;
   font-size: 3em;
-  color: rgb(155, 155, 155);
+  color: #95A9C9;
 }
 
 .fade p2 {
   font-size: 1.5em;
-  color: rgb(155, 155, 155);
+  color: #95A9C9;
 }
 
 .fade p3 {
-  font-size: 2em;
-  color: rgb(155, 155, 155);
+  /* font-family: 'Roboto Slab', serif; */
+  font-size: 4.2em;
+  color: #c8cee1a7;
+  /* background-color: #858f9e; */
+  text-shadow: -3px -3px 0 #919bab80, 3px -3px 0 #64768b6a, -3px 3px 0 #aaadbc82, 3px 5px 0 #c8d0dae5;
+
 }
 
 .active {
@@ -44,6 +49,27 @@ body {
   z-index: 1;
 }
 
+#div1 {
+  width: 95vh;
+}
+
 #div2 {
   width: 100vw;
+}
+#div3 {
+  /* background-color: #858f9e; */
+}
+
+p4 {
+  color: #95A9C9;
+}
+
+h1 {
+  display: block;
+  font-size: 1em;
+  margin-block-start: 0.0em;
+  margin-block-end: 0.0em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
 }
