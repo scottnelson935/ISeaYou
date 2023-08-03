@@ -15,36 +15,6 @@ function setup() {
   colorMode(HSB);
   // console.log("canvas created!");
   drawPoem();
-
-
-  // let lines = poem.split('\n');
-
-  // for (let i = 0; o < lines.length; i++) {
-  //   let indent = 0;
-
-  //   if (lines[i].startsWith("\t")) {
-  //     indent = 50;
-  //     lines[i] = lines[i].replace('\t', "");
-  //   }
-
-  //   text(lines[i], 10 + indent, 20 + i * 20);
-  // }
-
-  // push();
-  // noStroke();
-  // textFont('Times New Roman')
-  // fill(226, 11, 83);
-  // textSize(3 * remInPixels);
-  // text("paso a paso\npasó\nem paz\nen amore\nebb alone\nenamored\nabalone\nenamored\ncomo mar", (windowWidth / textXScale), (windowHeight / textYScale) + 40);
-  // fill(217, 15, 62);
-  // text("paso a paso\npasó\nem paz\nen amore\nebb alone\nenamored\nabalone\nenamored\ncomo mar", (windowWidth / textXScale) - 3, (windowHeight / textYScale) + 37);
-  // fill(212, 28, 47);
-  // text("paso a paso\npasó\nem paz\nen amore\nebb alone\nenamored\nabalone\nenamored\ncomo mar", (windowWidth / textXScale) + 3, (windowHeight / textYScale) + 37);
-  // fill(230, 10, 70);
-  // text("paso a paso\npasó\nem paz\nen amore\nebb alone\nenamored\nabalone\nenamored\ncomo mar", (windowWidth / textXScale) - 3, (windowHeight / textYScale) + 43);
-  // fill(213, 8, 82);
-  // text("paso a paso\npasó\nem paz\nen amore\nebb alone\nenamored\nabalone\nenamored\ncomo mar", (windowWidth / textXScale) + 3, (windowHeight / textYScale) + 45);
-  // pop();
 }
 
 function windowResized() {
@@ -64,7 +34,7 @@ function draw() {
   // console.log('check');
   // background(0, 0, 100, 0.01);
   // background(0, 0, 100, 0.05); // really transparent
-  background(0, 0, 100, 0.04);
+  background(0, 0, 100, 0.03);
   stroke(215, 10, 70); //variable that will change the paint color
   strokeWeight(3);
 
@@ -72,12 +42,18 @@ function draw() {
     // console.log('mouse');
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
+
+  noStroke();
+  textFont('Times New Roman')
+  fill(226, 11, 83);
+  textSize(1 * remInPixels);
+  text("Spacebar to save canvas", 20, windowHeight-30);
 }
 
 function drawPoem() {
   push();
   noStroke();
-  textFont('Times New Roman')
+  textFont('EB Garamond');
   fill(226, 11, 83);
   textSize(3 * remInPixels);
   text('paso a paso', (windowWidth / textXScale), (windowHeight / textYScale));

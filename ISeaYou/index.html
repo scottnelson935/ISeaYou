@@ -9,7 +9,9 @@
   <link rel="stylesheet" href="./CSS/playbarStyle.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Charm&family=EB+Garamond&family=Nanum+Pen+Script&family=Raleway:wght@300&family=Roboto+Slab:wght@300&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
@@ -17,9 +19,8 @@
   <div class="container">
     <div class="row">
       <div class="fade active" id="div1">
-        <p>I Sea You</p>
-        <br>
-        <p2>
+        <p id="title">I Sea You</p>
+        <p class="p2">
           Plunge into this interactive video poem<br>
           where you, the spectator, will be moving along<br>
           with the image, the text, and the dancer:<br>
@@ -27,15 +28,17 @@
           at the end of the film,<br>
           write over the poem<br>
           as a memory of your own experience<br>
-        </p2>
+        </p>
         <p>
           "Over 70,000 Fathoms of Water"<br>
 
         </p>
-        <p2>← → to navigate<br>
-        </p2>
+        <p class="p2">← → to navigate<br>
+        </p>
       </div>
       <div class="fade" id="div2">
+          <!-- Note to self if user tries to draw over video, pop up navigation arrows prompting to go to third page -->
+
         <div class="video-container">
           <video id="myVideo" loop>
             <source src="./Media/ISeaYouWebDevVidHQ.mp4" type="video/mp4">
@@ -47,7 +50,17 @@
         </div>
       </div>
       <div class="fade" id="div3">
-        <p3></p3>
+        <p3>
+          paso a paso<br>
+          pasó<br>
+          em paz<br>
+          en amore<br>
+          ebb alone<br>
+          enamored<br>
+          abalone<br>
+          enamored<br>
+          como mar
+        </p3>
       </div>
     </div>
   </div>

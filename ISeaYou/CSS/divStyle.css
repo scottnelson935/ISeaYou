@@ -24,6 +24,10 @@ body {
   z-index: 0;
 }
 
+#title {
+  margin-bottom: -0.05px
+}
+
 /* .fade-bottom {
   position: absolute;
   bottom: 0;
@@ -35,21 +39,26 @@ body {
 } */
 
 .fade p {
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 3em;
-  color: #95A9C9;
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-family: 'Charm', cursive;
+  font-size: 2.5em;
+  color: rgb(149, 169, 201);
+  
+
 }
 
-.fade p2 {
+.fade .p2 {
+  font-family: 'EB Garamond', serif;
   font-size: 1.5em;
   color: #95A9C9;
 }
 
 .fade p3 {
   /* font-family: 'Roboto Slab', serif; */
+  font-family: 'Nanum Pen Script', cursive;
   font-size: 4.2em;
   text-align: center;
-  color: #c8cee1a7;
+  color: #545762a7;
   /* background-color: #858f9e; */
   /* text-shadow: -3px -3px 0 rgba(145, 155, 171, 0.502), 3px -3px 0 rgba(100, 118, 139, 0.416), -3px 3px 0 rgba(170, 173, 188, 0.51), 3px 5px 0 rgba(200, 208, 218, 0.898); */
 
