@@ -5,7 +5,7 @@ body {
   min-height: 100vh;
   margin: 0;
   background-color: white;
-  
+  overflow: hidden;
 }
 
 .container {
@@ -24,6 +24,16 @@ body {
   z-index: 0;
 }
 
+/* .fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(50%, 0);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 0;
+} */
+
 .fade p {
   font-family: 'Times New Roman', Times, serif;
   font-size: 3em;
@@ -38,9 +48,10 @@ body {
 .fade p3 {
   /* font-family: 'Roboto Slab', serif; */
   font-size: 4.2em;
+  text-align: center;
   color: #c8cee1a7;
   /* background-color: #858f9e; */
-  text-shadow: -3px -3px 0 #919bab80, 3px -3px 0 #64768b6a, -3px 3px 0 #aaadbc82, 3px 5px 0 #c8d0dae5;
+  /* text-shadow: -3px -3px 0 rgba(145, 155, 171, 0.502), 3px -3px 0 rgba(100, 118, 139, 0.416), -3px 3px 0 rgba(170, 173, 188, 0.51), 3px 5px 0 rgba(200, 208, 218, 0.898); */
 
 }
 
@@ -51,13 +62,30 @@ body {
 
 #div1 {
   width: 95vh;
+  user-select: none;
 }
 
 #div2 {
   width: 100vw;
+  user-select: none;
 }
+
 #div3 {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  top: 50vh;
+  /* margin-left: 20vw; */
+  user-select: none;
   /* background-color: #858f9e; */
+}
+
+#div3 canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 p4 {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>CodePen - div opacity transitions</title>
@@ -10,14 +11,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
 </head>
+
 <body>
-<!-- partial:index.partial.html -->
-<div class="container">
-  <div class="row">
-    <div class="fade active" id="div1">
-      <p>I Sea You</p>
-         <br>
-      <p2>
+  <!-- partial:index.partial.html -->
+  <div class="container">
+    <div class="row">
+      <div class="fade active" id="div1">
+        <p>I Sea You</p>
+        <br>
+        <p2>
           Plunge into this interactive video poem<br>
           where you, the spectator, will be moving along<br>
           with the image, the text, and the dancer:<br>
@@ -25,43 +27,35 @@
           at the end of the film,<br>
           write over the poem<br>
           as a memory of your own experience<br>
-      </p2>
-      <p>
-        "Over 70,000 Fathoms of Water"<br>
-        
-      </p>
-      <p2>← → to navigate<br>
-      </p2>
-   </div>
-    <div class="fade" id="div2">
-      <div class="video-container">
-        <video id="myVideo" loop>
-          <source src="./Media/ISeaYou_test.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="playbar-container">
-          <div class="playbar"></div>
+        </p2>
+        <p>
+          "Over 70,000 Fathoms of Water"<br>
+
+        </p>
+        <p2>← → to navigate<br>
+        </p2>
+      </div>
+      <div class="fade" id="div2">
+        <div class="video-container">
+          <video id="myVideo" loop>
+            <source src="./Media/ISeaYouWebDevVidHQ.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="playbar-container">
+            <div class="playbar"></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="fade" id="div3">
-      <script src="sketch.js"></script>
-      <p3>paso a paso<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;pasó<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;em paz<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;en amore<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ebb alone<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enamored<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abalone<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enamored<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;com o mar<br>
-      </p3>
+      <div class="fade" id="div3">
+        <p3></p3>
+      </div>
     </div>
   </div>
-</div>
 
   <script src="./JS/jquery.js"></script>
-  <script  src="./JS/script.js"></script>
-  <script  src="./JS/playbar.js"></script>
+  <script src="./JS/script.js"></script>
+  <script src="./JS/playbar.js"></script>
+  <script src="./JS/sketch.js"></script>
 </body>
+
 </html>
