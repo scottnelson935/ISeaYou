@@ -35,7 +35,7 @@ $(document).ready(function () {
   }
 
   // Function to transition to the previous div
-  function transitionToPreviousDiv() {
+  window.transitionToPreviousDiv = function() {
     // Fade out the current div
     $("#div" + (currentDivIndex + 1)).fadeTo(500, 0, function () {
       // Remove the active class from the current div

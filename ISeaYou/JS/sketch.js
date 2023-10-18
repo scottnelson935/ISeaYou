@@ -1,3 +1,8 @@
+// 10/18/2023 - notes: add navigate buttons for mobile users;
+//upload full video (with white fades in/out);
+//fix the diamonding of the poems
+
+
 let remInPixels;
 let textXScale = 4;
 let textYScale = 8;
@@ -19,7 +24,7 @@ let lineHeight;
 
 let origTextSize = 3;
 
-let spaceText = "Save canvas";
+let spaceText = "␣  Save canvas";
 let spaceChar = "␣";
 
 let savedCanvases = [];
@@ -28,9 +33,16 @@ let userDrawings;
 let poemBuffer;
 let tempBuffer;
 
+let backButton;
+
+let bgBuffer;
+let bg;
+
 // let poem = 'paso a paso\n\tpasó\n\t\tem paz\nen amore\nebb alone\nenamored\nabalone\nenamored\ncomo mar';
 
 function setup() {
+  bg = loadImage("../Media/imageWashedOut.jpeg");
+
   let div3 = document.getElementById('div3');
   remInPixels = parseFloat(getComputedStyle(document.documentElement).fontSize);
   cnv = createCanvas(windowWidth, windowHeight);
@@ -53,6 +65,7 @@ function setup() {
 
   tempBuffer = createGraphics(windowWidth, windowHeight);
 
+  bgBuffer = createGraphics(windowWidth, windowHeight);
 }
 
 function windowResized() {
@@ -70,6 +83,8 @@ function keyPressed() {
   }
 }
 
+
+
 function draw() {
   // console.log('check');
   // background(0, 0, 100, 0.01);
@@ -79,13 +94,17 @@ function draw() {
 
   // draws line at cursor
   push();
-  stroke(215, 10, 70, 0.01); //variable that will change the paint color
+  userDrawings.colorMode(HSB);
+  stroke(215, 10, 70, 0.002); //variable that will change the paint color
   strokeWeight(3);
   if (mouseIsPressed) {
     // console.log('mouse');
     userDrawings.colorMode(HSB);
     userDrawings.line(mouseX + 10, mouseY + 10, pmouseX + 10, pmouseY + 10);
   }
+
+  // drawBG();
+  // image(bgBuffer);  
 
   image(userDrawings, 0, 0);
   pop();
@@ -95,11 +114,6 @@ function draw() {
 
   drawPoemToBuffer();
   image(poemBuffer, 0, 0);
-
-
-  // drawPoem2();
-
-  
 
   //not quite working yet
   // for (let i = 0; i < numLines; i++) {
@@ -124,18 +138,24 @@ function draw() {
   textFont('EB Garamond')
   fill(210, 11, 83);
   textSize(1.5 * remInPixels);
-  // lineHeight = 1 * remInPixels * 1.5;
+  lineHeight = 1 * remInPixels * 1.5;
   text("←  Back to video, sketch stays intact", 30, windowHeight - 50);
-  push();
-  textSize(1.5 * remInPixels);
-  scale(2, 1);
-  text(spaceChar, 19, windowHeight - 30);
-  pop();
+  // push();
+  // textSize(1.2 * remInPixels);
+  // scale(1.5, 1);
+  // text(spaceChar, 20, windowHeight - 30);
+  // pop();
   textSize(1.5 * remInPixels)
-  text(spaceText, 63, windowHeight - 27);
+  text(spaceText, 32, windowHeight - 27);
   pop();
-  
+}
 
+function mousePressed() {
+  if (mouseX > 30 && mouseX < 30 + 100 &&
+    mouseY > windowHeight - 50 && mouseY < windowHeight - 30) {
+      transitionToPreviousDiv();
+      console.log("divTransitionClick!");
+    }
 }
 
 function drawPoem2() {
@@ -252,6 +272,10 @@ function drawPoem2() {
   fill(213, 8, 82, 0.018);
   text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance9, (windowHeight / 2) + (indent * 4) + textPosVariance9);
   pop();
+}
+
+function  drawBG() {
+  bgBuffer.background(bg);
 }
 
 function drawPoemToBuffer() {

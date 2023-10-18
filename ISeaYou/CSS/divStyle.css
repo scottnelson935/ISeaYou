@@ -4,8 +4,13 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  background-color: white;
+  /*background-color: white;*/
   overflow: hidden;
+  /*background-image: url('https://earth.esa.int/eogateway/documents/20142/3040165/Wheat-fields-subpage.jpg');*/
+  background-image: url('../Media/image.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 html {
