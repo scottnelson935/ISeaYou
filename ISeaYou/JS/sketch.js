@@ -67,7 +67,7 @@ function setup() {
 
   bgBuffer = createGraphics(windowWidth, windowHeight);
 
-  newLine = getDynamicSpacing(65, 500, 1200, windowHeight);
+  newLine = getDynamicSpacing(55, 500, 1200, windowHeight);
   indent = getDynamicSpacing(30, 500, 1200, windowWidth);
 }
 
@@ -75,7 +75,7 @@ function windowResized() {
   let div3 = document.getElementById('div3');
   resizeCanvas(windowWidth, windowHeight);
 
-  newLine = getDynamicSpacing(65, 500, 1200, windowHeight);
+  newLine = getDynamicSpacing(55, 500, 1200, windowHeight);
   indent = getDynamicSpacing(30, 500, 1200, windowWidth);
 }
 
