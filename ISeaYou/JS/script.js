@@ -3,6 +3,25 @@ $(document).ready(function () {
   var currentDivIndex = 0;
   var totalDivs = 3;
 
+  // window.addEventListener("orientationchange", function () {
+  //   if (window.orientation === 0) {
+  //     alert("For best experience, please rotate your device to landscape mode.");
+  //     // You can also trigger a full-screen overlay similar to the CSS example above
+  //   }
+  // }, false);
+
+  $('#goToInstructions').on('click touchstart', function () {
+    window.transitionToPreviousDiv();
+  });
+
+  $('#goToCanvas').on('click touchstart', function () {
+    transitionToNextDiv();
+  });
+
+  $('#navigateFromFirstDiv').on('click touchstart', function () {
+    transitionToNextDiv();
+  });
+
   // Function to transition to the next div
   function transitionToNextDiv() {
     // Fade out the current div
@@ -35,7 +54,7 @@ $(document).ready(function () {
   }
 
   // Function to transition to the previous div
-  window.transitionToPreviousDiv = function() {
+  window.transitionToPreviousDiv = function () {
     // Fade out the current div
     $("#div" + (currentDivIndex + 1)).fadeTo(500, 0, function () {
       // Remove the active class from the current div
@@ -78,8 +97,8 @@ $(document).ready(function () {
   });
 });
 
-$(document).ready(function() {
-  $(document).on('mousemove', function(e) {
+$(document).ready(function () {
+  $(document).on('mousemove', function (e) {
     $('#circularcursor').css({
       left: e.pageX,
       top: e.pageY

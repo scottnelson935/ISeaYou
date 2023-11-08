@@ -1,3 +1,38 @@
+@media screen and (orientation: portrait) {
+  .landscape-prompt {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60%;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    z-index: 1000;
+    /* Ensure it's on top of other content */
+    text-align: center;
+    font-size: 3.5em;
+  }
+
+  /* Hide all other content when in portrait */
+  .container {
+    display: none;
+  }
+}
+
+@media screen and (orientation: landscape) {
+  .landscape-prompt {
+    display: none;
+  }
+
+  .container {
+    display: block;
+  }
+}
+
 body {
   display: flex;
   align-items: center;
@@ -19,12 +54,12 @@ html {
 
 #circularcursor {
   background-color: transparent;
-  border:1px solid #95A9C9;    
-  height:20px;
-  width:20px;
-  border-radius:50%;
-  -moz-border-radius:50%;
-  -webkit-border-radius:50%;
+  border: 1px solid #95A9C9;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
   position: absolute;
   z-index: 1;
 }
@@ -64,7 +99,7 @@ html {
   font-family: 'Charm', cursive;
   font-size: 2.5em;
   color: rgb(149, 169, 201);
-  
+
 
 }
 
@@ -139,4 +174,85 @@ h1 {
 #video-arrows {
   text-align: center;
   margin-top: 5px;
+}
+
+#video-arrows span {
+  display: inline-block;
+  margin: 0 5px;
+  padding: 5px;
+  /* Other styles to make them look good and touchable */
+}
+
+/* Styles for mobile devices */
+@media screen and (max-width: 768px) {
+  .fade p {
+    font-size: 2em;
+    /* Smaller font size for mobile */
+  }
+
+  .fade .p2 {
+    font-size: 1.2em;
+    /* Adjusted font size for smaller screens */
+  }
+
+  #div1,
+  #div2,
+  #div3 {
+    margin: 5px;
+    /* Adjust margins for mobile devices */
+  }
+
+  #div3 canvas {
+    /* Adjust video size or other properties for mobile */
+  }
+}
+
+/* Styles for tablets and small desktops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+  .fade p {
+    font-size: 1.8em;
+    /* Slightly larger font size for tablets */
+  }
+
+  .fade .p2 {
+    font-size: 1.4em;
+  }
+
+  #div1,
+  #div2,
+  #div3 {
+    margin: 5px;
+    /* Adjusted margins for tablets */
+  }
+
+  #div2 {
+    width: 100vw;
+  }
+
+  #div3 canvas {
+    /* Adjust video size or other properties for tablets */
+  }
+}
+
+/* Styles for desktops */
+@media screen and (min-width: 1025px) {
+  .fade p {
+    font-size: 2.5em;
+    /* Desktop font size */
+  }
+
+  .fade .p2 {
+    font-size: 1.5em;
+  }
+
+  #div1,
+  #div2,
+  #div3 {
+    margin: 30px;
+    /* Larger margins for desktop */
+  }
+
+  #div3 canvas {
+    /* Adjust video size or other properties for desktop */
+  }
 }

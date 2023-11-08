@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - div opacity transitions</title>
+  <title>I Sea You</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.6.0/p5.min.js"></script>
   <link rel="stylesheet" href="./CSS/divStyle.css">
   <link rel="stylesheet" href="./CSS/playbarStyle.css">
@@ -17,6 +17,11 @@
 <body>
   <div id="circularcursor"></div>
   <!-- partial:index.partial.html -->
+
+  <div class="landscape-prompt">
+    PLEASE ROTATE YOUR DEVICE<br>TO LANDSCAPE<br>FOR THE BEST EXPERIENCE
+  </div>
+
   <div class="container">
     <div class="row">
       <div class="fade active" id="div1">
@@ -34,7 +39,7 @@
           "Over 70,000 Fathoms of Water"<br>
 
         </p>
-        <p class="p2">← → Navigate between screens<br>
+        <p class="p2"><span id="navigateFromFirstDiv">← → Navigate between screens</span><br>
         </p>
       </div>
       <div class="fade" id="div2">
@@ -49,7 +54,10 @@
             <div class="playbar"></div>
           </div>
         </div>
-        <div id="video-arrows" class="p2">Instructions ← → Canvas</div>
+        <div id="video-arrows" class="p2">
+          <span id="goToInstructions">Instructions ←</span>
+          <span id="goToCanvas">→ Canvas</span>
+        </div>
       </div>
       <div class="fade" id="div3">
         <p3>

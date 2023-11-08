@@ -58,7 +58,7 @@ function setup() {
 
   userDrawings = createGraphics(windowWidth, windowHeight);
   poemBuffer = createGraphics(windowWidth, windowHeight);
-  
+
   userDrawings.colorMode(HSB);
 
   drawPoemToBuffer();
@@ -66,11 +66,17 @@ function setup() {
   tempBuffer = createGraphics(windowWidth, windowHeight);
 
   bgBuffer = createGraphics(windowWidth, windowHeight);
+
+  newLine = getDynamicSpacing(65, 500, 1200, windowHeight);
+  indent = getDynamicSpacing(30, 500, 1200, windowWidth);
 }
 
 function windowResized() {
   let div3 = document.getElementById('div3');
   resizeCanvas(windowWidth, windowHeight);
+
+  newLine = getDynamicSpacing(65, 500, 1200, windowHeight);
+  indent = getDynamicSpacing(30, 500, 1200, windowWidth);
 }
 
 function keyPressed() {
@@ -83,7 +89,14 @@ function keyPressed() {
   }
 }
 
-
+function getDynamicSpacing(baseSize, minWindowSize, maxWindowSize, windowSize) {
+  // Maps the current windowSize from the range of minWindowSize to maxWindowSize to a range of 1 to 2
+  let scaleFactor = map(windowSize, minWindowSize, maxWindowSize, 1, 2);
+  // Ensures that the scaleFactor is never less than 1 (no downscaling below baseSize)
+  scaleFactor = max(scaleFactor, 1);
+  // The final size is the baseSize multiplied by the scaleFactor
+  return baseSize * scaleFactor;
+}
 
 function draw() {
   // console.log('check');
@@ -129,7 +142,7 @@ function draw() {
   textPosVariance8 = textPosVariance8 + (random(-0.6, 0.6));
   textPosVariance9 = textPosVariance9 + (random(-0.6, 0.6));
 
-  
+
 
   origTextSize = origTextSize + (random(-0.2, 0.2))
   push();
@@ -148,14 +161,22 @@ function draw() {
   textSize(1.5 * remInPixels)
   text(spaceText, 32, windowHeight - 27);
   pop();
+  // rect(33, windowHeight - 50, 200, 20);
+  // rect(33, windowHeight - 27, 130, 22);
 }
 
 function mousePressed() {
-  if (mouseX > 30 && mouseX < 30 + 100 &&
+  if (mouseX > 33 && mouseX < 30 + 200 &&
     mouseY > windowHeight - 50 && mouseY < windowHeight - 30) {
-      transitionToPreviousDiv();
-      console.log("divTransitionClick!");
-    }
+    transitionToPreviousDiv();
+    console.log("divTransitionClick!");
+  }
+
+  if (mouseX > 33 && mouseX < 30 + 130 && mouseY > windowHeight - 27 && mouseY < windowHeight - 5) {
+    storeCanvas2();
+    console.log("canvasStored!");
+  }
+
 }
 
 function drawPoem2() {
@@ -187,7 +208,7 @@ function drawPoem2() {
   text('pasó', (windowWidth / 2) - (newLine * 3) - textPosVariance2, (windowHeight / 2) - (indent * 3) + textPosVariance2);
   fill(213, 8, 82, 0.018);
   text('pasó', (windowWidth / 2) - (newLine * 3) + textPosVariance2, (windowHeight / 2) - (indent * 3) + textPosVariance2);
-  
+
   //em paz
   fill(226, 50, 75, 0.022);
   text('em paz', (windowWidth / 2) - (newLine * 2), (windowHeight / 2) - (indent * 2));
@@ -199,7 +220,7 @@ function drawPoem2() {
   text('em paz', (windowWidth / 2) - (newLine * 2) - textPosVariance3, (windowHeight / 2) - (indent * 2) + textPosVariance3);
   fill(213, 8, 82, 0.018);
   text('em paz', (windowWidth / 2) - (newLine * 2) + textPosVariance3, (windowHeight / 2) - (indent * 2) + textPosVariance3);
-  
+
   //en a more
   fill(226, 50, 75, 0.022);
   text('en a more', (windowWidth / 2) - (newLine), (windowHeight / 2) - (indent));
@@ -210,8 +231,8 @@ function drawPoem2() {
   fill(230, 10, 70, 0.018);
   text('en a more', (windowWidth / 2) - (newLine) - textPosVariance4, (windowHeight / 2) - (indent) + textPosVariance4);
   fill(213, 8, 82, 0.018);
-  text('en a more', (windowWidth / 2) - (newLine) + textPosVariance4, (windowHeight / 2) - (indent) + textPosVariance4);  
-  
+  text('en a more', (windowWidth / 2) - (newLine) + textPosVariance4, (windowHeight / 2) - (indent) + textPosVariance4);
+
   //ebb alone
   fill(226, 50, 75, 0.022);
   text('ebb alone', (windowWidth / 2), (windowHeight / 2));
@@ -247,7 +268,7 @@ function drawPoem2() {
   text('abalone', (windowWidth / 2) + (newLine * 2) - textPosVariance7, (windowHeight / 2) + (indent * 2) + textPosVariance7);
   fill(213, 8, 82, 0.018);
   text('abalone', (windowWidth / 2) + (newLine * 2) + textPosVariance7, (windowHeight / 2) + (indent * 2) + textPosVariance7);
-  
+
   //enamored
   fill(226, 50, 75, 0.022);
   text('enamored', (windowWidth / 2) + (newLine * 3), (windowHeight / 2) + (indent * 3));
@@ -259,7 +280,7 @@ function drawPoem2() {
   text('enamored', (windowWidth / 2) + (newLine * 3) - textPosVariance8, (windowHeight / 2) + (indent * 3) + textPosVariance8);
   fill(213, 8, 82, 0.018);
   text('enamored', (windowWidth / 2) + (newLine * 3) + textPosVariance8, (windowHeight / 2) + (indent * 3) + textPosVariance8);
-  
+
   //como mar
   fill(226, 50, 75, 0.022);
   text('como mar', (windowWidth / 2) + (newLine * 4), (windowHeight / 2) + (indent * 4));
@@ -274,7 +295,7 @@ function drawPoem2() {
   pop();
 }
 
-function  drawBG() {
+function drawBG() {
   bgBuffer.background(bg);
 }
 
@@ -290,109 +311,109 @@ function drawPoemToBuffer() {
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4), (windowHeight / 2) - (indent * 4));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) - textPosVariance, (windowHeight / 2) - (indent * 4) - textPosVariance);
+  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) - textPosVariance, (windowHeight / 2) - (indent * 4) - textPosVariance2);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) + textPosVariance, (windowHeight / 2) - (indent * 4) - textPosVariance);
+  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) + textPosVariance3, (windowHeight / 2) - (indent * 4) - textPosVariance4);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) - textPosVariance, (windowHeight / 2) - (indent * 4) + textPosVariance);
+  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) - textPosVariance5, (windowHeight / 2) - (indent * 4) + textPosVariance6);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) + textPosVariance, (windowHeight / 2) - (indent * 4) + textPosVariance);
+  poemBuffer.text('paso a paso', (windowWidth / 2) - (newLine * 4) + textPosVariance7, (windowHeight / 2) - (indent * 4) + textPosVariance8);
 
   //pasó
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3), (windowHeight / 2) - (indent * 3));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) - textPosVariance2, (windowHeight / 2) - (indent * 3) - textPosVariance2);
+  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) - textPosVariance2, (windowHeight / 2) - (indent * 3) - textPosVariance);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) + textPosVariance2, (windowHeight / 2) - (indent * 3) - textPosVariance2);
+  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) + textPosVariance9, (windowHeight / 2) - (indent * 3) - textPosVariance8);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) - textPosVariance2, (windowHeight / 2) - (indent * 3) + textPosVariance2);
+  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) - textPosVariance7, (windowHeight / 2) - (indent * 3) + textPosVariance6);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) + textPosVariance2, (windowHeight / 2) - (indent * 3) + textPosVariance2);
-  
+  poemBuffer.text('pasó', (windowWidth / 2) - (newLine * 3) + textPosVariance5, (windowHeight / 2) - (indent * 3) + textPosVariance4);
+
   //em paz
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2), (windowHeight / 2) - (indent * 2));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) - textPosVariance3, (windowHeight / 2) - (indent * 2) - textPosVariance3);
+  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) - textPosVariance3, (windowHeight / 2) - (indent * 2) - textPosVariance4);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) + textPosVariance3, (windowHeight / 2) - (indent * 2) - textPosVariance3);
+  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) + textPosVariance5, (windowHeight / 2) - (indent * 2) - textPosVariance6);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) - textPosVariance3, (windowHeight / 2) - (indent * 2) + textPosVariance3);
+  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) - textPosVariance7, (windowHeight / 2) - (indent * 2) + textPosVariance8);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) + textPosVariance3, (windowHeight / 2) - (indent * 2) + textPosVariance3);
-  
+  poemBuffer.text('em paz', (windowWidth / 2) - (newLine * 2) + textPosVariance9, (windowHeight / 2) - (indent * 2) + textPosVariance);
+
   //en a more
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('en a more', (windowWidth / 2) - (newLine), (windowHeight / 2) - (indent));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) - textPosVariance4, (windowHeight / 2) - (indent) - textPosVariance4);
+  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) - textPosVariance4, (windowHeight / 2) - (indent) - textPosVariance3);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) + textPosVariance4, (windowHeight / 2) - (indent) - textPosVariance4);
+  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) + textPosVariance2, (windowHeight / 2) - (indent) - textPosVariance);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) - textPosVariance4, (windowHeight / 2) - (indent) + textPosVariance4);
+  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) - textPosVariance9, (windowHeight / 2) - (indent) + textPosVariance8);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) + textPosVariance4, (windowHeight / 2) - (indent) + textPosVariance4);  
-  
+  poemBuffer.text('en a more', (windowWidth / 2) - (newLine) + textPosVariance7, (windowHeight / 2) - (indent) + textPosVariance6);
+
   //ebb alone
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('ebb alone', (windowWidth / 2), (windowHeight / 2));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('ebb alone', (windowWidth / 2) - textPosVariance5, (windowHeight / 2) - textPosVariance5);
+  poemBuffer.text('ebb alone', (windowWidth / 2) - textPosVariance5, (windowHeight / 2) - textPosVariance6);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('ebb alone', (windowWidth / 2) + textPosVariance5, (windowHeight / 2) - textPosVariance5);
+  poemBuffer.text('ebb alone', (windowWidth / 2) + textPosVariance7, (windowHeight / 2) - textPosVariance8);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('ebb alone', (windowWidth / 2) - textPosVariance5, (windowHeight / 2) + textPosVariance5);
+  poemBuffer.text('ebb alone', (windowWidth / 2) - textPosVariance9, (windowHeight / 2) + textPosVariance);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('ebb alone', (windowWidth / 2) + textPosVariance5, (windowHeight / 2) + textPosVariance5);
+  poemBuffer.text('ebb alone', (windowWidth / 2) + textPosVariance2, (windowHeight / 2) + textPosVariance3);
 
   //enamored
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('enamored', (windowWidth / 2) + newLine, (windowHeight / 2) + indent);
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('enamored', (windowWidth / 2) + newLine - textPosVariance6, (windowHeight / 2) + indent - textPosVariance6);
+  poemBuffer.text('enamored', (windowWidth / 2) + newLine - textPosVariance6, (windowHeight / 2) + indent - textPosVariance5);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('enamored', (windowWidth / 2) + newLine + textPosVariance6, (windowHeight / 2) + indent - textPosVariance6);
+  poemBuffer.text('enamored', (windowWidth / 2) + newLine + textPosVariance4, (windowHeight / 2) + indent - textPosVariance3);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('enamored', (windowWidth / 2) + newLine - textPosVariance6, (windowHeight / 2) + indent + textPosVariance6);
+  poemBuffer.text('enamored', (windowWidth / 2) + newLine - textPosVariance2, (windowHeight / 2) + indent + textPosVariance);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('enamored', (windowWidth / 2) + newLine + textPosVariance6, (windowHeight / 2) + indent + textPosVariance6);
+  poemBuffer.text('enamored', (windowWidth / 2) + newLine + textPosVariance9, (windowHeight / 2) + indent + textPosVariance8);
 
   //abalone
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2), (windowHeight / 2) + (indent * 2));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) - textPosVariance7, (windowHeight / 2) + (indent * 2) - textPosVariance7);
+  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) - textPosVariance7, (windowHeight / 2) + (indent * 2) - textPosVariance8);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) + textPosVariance7, (windowHeight / 2) + (indent * 2) - textPosVariance7);
+  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) + textPosVariance9, (windowHeight / 2) + (indent * 2) - textPosVariance);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) - textPosVariance7, (windowHeight / 2) + (indent * 2) + textPosVariance7);
+  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) - textPosVariance2, (windowHeight / 2) + (indent * 2) + textPosVariance3);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) + textPosVariance7, (windowHeight / 2) + (indent * 2) + textPosVariance7);
-  
+  poemBuffer.text('abalone', (windowWidth / 2) + (newLine * 2) + textPosVariance4, (windowHeight / 2) + (indent * 2) + textPosVariance5);
+
   //enamored
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3), (windowHeight / 2) + (indent * 3));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) - textPosVariance8, (windowHeight / 2) + (indent * 3) - textPosVariance8);
+  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) - textPosVariance8, (windowHeight / 2) + (indent * 3) - textPosVariance7);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) + textPosVariance8, (windowHeight / 2) + (indent * 3) - textPosVariance8);
+  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) + textPosVariance6, (windowHeight / 2) + (indent * 3) - textPosVariance5);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) - textPosVariance8, (windowHeight / 2) + (indent * 3) + textPosVariance8);
+  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) - textPosVariance4, (windowHeight / 2) + (indent * 3) + textPosVariance3);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) + textPosVariance8, (windowHeight / 2) + (indent * 3) + textPosVariance8);
-  
+  poemBuffer.text('enamored', (windowWidth / 2) + (newLine * 3) + textPosVariance2, (windowHeight / 2) + (indent * 3) + textPosVariance);
+
   //como mar
   poemBuffer.fill(226, 50, 75, 0.022);
   poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4), (windowHeight / 2) + (indent * 4));
   poemBuffer.fill(217, 15, 62, 0.018);
-  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) - textPosVariance9, (windowHeight / 2) + (indent * 4) - textPosVariance9);
+  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) - textPosVariance9, (windowHeight / 2) + (indent * 4) - textPosVariance);
   poemBuffer.fill(212, 28, 47, 0.022);
-  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance9, (windowHeight / 2) + (indent * 4) - textPosVariance9);
+  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance2, (windowHeight / 2) + (indent * 4) - textPosVariance3);
   poemBuffer.fill(230, 10, 70, 0.018);
-  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) - textPosVariance9, (windowHeight / 2) + (indent * 4) + textPosVariance9);
+  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) - textPosVariance4, (windowHeight / 2) + (indent * 4) + textPosVariance5);
   poemBuffer.fill(213, 8, 82, 0.018);
-  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance9, (windowHeight / 2) + (indent * 4) + textPosVariance9);
+  poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance6, (windowHeight / 2) + (indent * 4) + textPosVariance7);
   poemBuffer.pop();
 }
 
@@ -437,7 +458,7 @@ function drawSavedCanvases() {
     // Calculate transparency and scale based on the canvas's position in the array
     let transparency = map(i, 0, savedCanvases.length, 50, 255); // Adjust the range as needed
     let scaleFactor;
-    
+
     if (savedCanvases.length === 1) {
       scaleFactor = 0.9;
     } else if (savedCanvases.length === 2) {
@@ -469,7 +490,7 @@ function drawSavedCanvases() {
     } else if (savedCanvases.length === 15) {
       scaleFactor = 0.25;
     } else {
-      scaleFactor = map (i, 0, savedCanvases.length - 1, 0.3, 1);
+      scaleFactor = map(i, 0, savedCanvases.length - 1, 0.3, 1);
     }
 
     // Apply the transparency
