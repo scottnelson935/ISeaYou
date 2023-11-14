@@ -102,17 +102,25 @@ function draw() {
   // console.log('check');
   // background(0, 0, 100, 0.01);
   // background(0, 0, 100, 0.05); // really transparent
+  // tint(0, 100, 50, 1);
+  if (keyIsPressed && keyCode === 27) {
+    background(255);
+    // image(savedCanvases[1], 0, 0);
+    // image(userDrawings, 0, 0);
+    drawSavedCanvases();
 
+  } else {
   background(0, 0, 100, 0.025);
 
   // draws line at cursor
-  push();
+  // push();
   userDrawings.colorMode(HSB);
-  stroke(215, 10, 70, 0.002); //variable that will change the paint color
-  strokeWeight(3);
+  // stroke(215, 10, 70, 0.002); //variable that will change the paint color
   if (mouseIsPressed) {
     // console.log('mouse');
     userDrawings.colorMode(HSB);
+    userDrawings.strokeWeight(3);
+    userDrawings.stroke(215, 10, 70, 50);
     userDrawings.line(mouseX + 10, mouseY + 10, pmouseX + 10, pmouseY + 10);
   }
 
@@ -120,7 +128,7 @@ function draw() {
   // image(bgBuffer);  
 
   image(userDrawings, 0, 0);
-  pop();
+  // pop();
 
   drawSavedCanvases();
 
@@ -162,7 +170,8 @@ function draw() {
   text(spaceText, 32, windowHeight - 27);
   pop();
   // rect(33, windowHeight - 50, 200, 20);
-  // rect(33, windowHeight - 27, 130, 22);
+  // rect(33, windowHeight - 27, 130, 22);}
+}
 }
 
 function mousePressed() {
@@ -177,126 +186,6 @@ function mousePressed() {
     console.log("canvasStored!");
   }
 
-}
-
-function drawPoem2() {
-  // clear();
-  push();
-  noStroke();
-  textFont('EB Garamond');
-  textSize(3 * remInPixels);
-  //paso a paso
-  fill(226, 50, 75, 0.022);
-  text('paso a paso', (windowWidth / 2) - (newLine * 4), (windowHeight / 2) - (indent * 4));
-  fill(217, 15, 62, 0.018);
-  text('paso a paso', (windowWidth / 2) - (newLine * 4) - textPosVariance, (windowHeight / 2) - (indent * 4) - textPosVariance);
-  fill(212, 28, 47, 0.022);
-  text('paso a paso', (windowWidth / 2) - (newLine * 4) + textPosVariance, (windowHeight / 2) - (indent * 4) - textPosVariance);
-  fill(230, 10, 70, 0.018);
-  text('paso a paso', (windowWidth / 2) - (newLine * 4) - textPosVariance, (windowHeight / 2) - (indent * 4) + textPosVariance);
-  fill(213, 8, 82, 0.018);
-  text('paso a paso', (windowWidth / 2) - (newLine * 4) + textPosVariance, (windowHeight / 2) - (indent * 4) + textPosVariance);
-
-  //pasó
-  fill(226, 50, 75, 0.022);
-  text('pasó', (windowWidth / 2) - (newLine * 3), (windowHeight / 2) - (indent * 3));
-  fill(217, 15, 62, 0.018);
-  text('pasó', (windowWidth / 2) - (newLine * 3) - textPosVariance2, (windowHeight / 2) - (indent * 3) - textPosVariance2);
-  fill(212, 28, 47, 0.022);
-  text('pasó', (windowWidth / 2) - (newLine * 3) + textPosVariance2, (windowHeight / 2) - (indent * 3) - textPosVariance2);
-  fill(230, 10, 70, 0.018);
-  text('pasó', (windowWidth / 2) - (newLine * 3) - textPosVariance2, (windowHeight / 2) - (indent * 3) + textPosVariance2);
-  fill(213, 8, 82, 0.018);
-  text('pasó', (windowWidth / 2) - (newLine * 3) + textPosVariance2, (windowHeight / 2) - (indent * 3) + textPosVariance2);
-
-  //em paz
-  fill(226, 50, 75, 0.022);
-  text('em paz', (windowWidth / 2) - (newLine * 2), (windowHeight / 2) - (indent * 2));
-  fill(217, 15, 62, 0.018);
-  text('em paz', (windowWidth / 2) - (newLine * 2) - textPosVariance3, (windowHeight / 2) - (indent * 2) - textPosVariance3);
-  fill(212, 28, 47, 0.022);
-  text('em paz', (windowWidth / 2) - (newLine * 2) + textPosVariance3, (windowHeight / 2) - (indent * 2) - textPosVariance3);
-  fill(230, 10, 70, 0.018);
-  text('em paz', (windowWidth / 2) - (newLine * 2) - textPosVariance3, (windowHeight / 2) - (indent * 2) + textPosVariance3);
-  fill(213, 8, 82, 0.018);
-  text('em paz', (windowWidth / 2) - (newLine * 2) + textPosVariance3, (windowHeight / 2) - (indent * 2) + textPosVariance3);
-
-  //en a more
-  fill(226, 50, 75, 0.022);
-  text('en a more', (windowWidth / 2) - (newLine), (windowHeight / 2) - (indent));
-  fill(217, 15, 62, 0.018);
-  text('en a more', (windowWidth / 2) - (newLine) - textPosVariance4, (windowHeight / 2) - (indent) - textPosVariance4);
-  fill(212, 28, 47, 0.022);
-  text('en a more', (windowWidth / 2) - (newLine) + textPosVariance4, (windowHeight / 2) - (indent) - textPosVariance4);
-  fill(230, 10, 70, 0.018);
-  text('en a more', (windowWidth / 2) - (newLine) - textPosVariance4, (windowHeight / 2) - (indent) + textPosVariance4);
-  fill(213, 8, 82, 0.018);
-  text('en a more', (windowWidth / 2) - (newLine) + textPosVariance4, (windowHeight / 2) - (indent) + textPosVariance4);
-
-  //ebb alone
-  fill(226, 50, 75, 0.022);
-  text('ebb alone', (windowWidth / 2), (windowHeight / 2));
-  fill(217, 15, 62, 0.018);
-  text('ebb alone', (windowWidth / 2) - textPosVariance5, (windowHeight / 2) - textPosVariance5);
-  fill(212, 28, 47, 0.022);
-  text('ebb alone', (windowWidth / 2) + textPosVariance5, (windowHeight / 2) - textPosVariance5);
-  fill(230, 10, 70, 0.018);
-  text('ebb alone', (windowWidth / 2) - textPosVariance5, (windowHeight / 2) + textPosVariance5);
-  fill(213, 8, 82, 0.018);
-  text('ebb alone', (windowWidth / 2) + textPosVariance5, (windowHeight / 2) + textPosVariance5);
-
-  //enamored
-  fill(226, 50, 75, 0.022);
-  text('enamored', (windowWidth / 2) + newLine, (windowHeight / 2) + indent);
-  fill(217, 15, 62, 0.018);
-  text('enamored', (windowWidth / 2) + newLine - textPosVariance6, (windowHeight / 2) + indent - textPosVariance6);
-  fill(212, 28, 47, 0.022);
-  text('enamored', (windowWidth / 2) + newLine + textPosVariance6, (windowHeight / 2) + indent - textPosVariance6);
-  fill(230, 10, 70, 0.018);
-  text('enamored', (windowWidth / 2) + newLine - textPosVariance6, (windowHeight / 2) + indent + textPosVariance6);
-  fill(213, 8, 82, 0.018);
-  text('enamored', (windowWidth / 2) + newLine + textPosVariance6, (windowHeight / 2) + indent + textPosVariance6);
-
-  //abalone
-  fill(226, 50, 75, 0.022);
-  text('abalone', (windowWidth / 2) + (newLine * 2), (windowHeight / 2) + (indent * 2));
-  fill(217, 15, 62, 0.018);
-  text('abalone', (windowWidth / 2) + (newLine * 2) - textPosVariance7, (windowHeight / 2) + (indent * 2) - textPosVariance7);
-  fill(212, 28, 47, 0.022);
-  text('abalone', (windowWidth / 2) + (newLine * 2) + textPosVariance7, (windowHeight / 2) + (indent * 2) - textPosVariance7);
-  fill(230, 10, 70, 0.018);
-  text('abalone', (windowWidth / 2) + (newLine * 2) - textPosVariance7, (windowHeight / 2) + (indent * 2) + textPosVariance7);
-  fill(213, 8, 82, 0.018);
-  text('abalone', (windowWidth / 2) + (newLine * 2) + textPosVariance7, (windowHeight / 2) + (indent * 2) + textPosVariance7);
-
-  //enamored
-  fill(226, 50, 75, 0.022);
-  text('enamored', (windowWidth / 2) + (newLine * 3), (windowHeight / 2) + (indent * 3));
-  fill(217, 15, 62, 0.018);
-  text('enamored', (windowWidth / 2) + (newLine * 3) - textPosVariance8, (windowHeight / 2) + (indent * 3) - textPosVariance8);
-  fill(212, 28, 47, 0.022);
-  text('enamored', (windowWidth / 2) + (newLine * 3) + textPosVariance8, (windowHeight / 2) + (indent * 3) - textPosVariance8);
-  fill(230, 10, 70, 0.018);
-  text('enamored', (windowWidth / 2) + (newLine * 3) - textPosVariance8, (windowHeight / 2) + (indent * 3) + textPosVariance8);
-  fill(213, 8, 82, 0.018);
-  text('enamored', (windowWidth / 2) + (newLine * 3) + textPosVariance8, (windowHeight / 2) + (indent * 3) + textPosVariance8);
-
-  //como mar
-  fill(226, 50, 75, 0.022);
-  text('como mar', (windowWidth / 2) + (newLine * 4), (windowHeight / 2) + (indent * 4));
-  fill(217, 15, 62, 0.018);
-  text('como mar', (windowWidth / 2) + (newLine * 4) - textPosVariance9, (windowHeight / 2) + (indent * 4) - textPosVariance9);
-  fill(212, 28, 47, 0.022);
-  text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance9, (windowHeight / 2) + (indent * 4) - textPosVariance9);
-  fill(230, 10, 70, 0.018);
-  text('como mar', (windowWidth / 2) + (newLine * 4) - textPosVariance9, (windowHeight / 2) + (indent * 4) + textPosVariance9);
-  fill(213, 8, 82, 0.018);
-  text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance9, (windowHeight / 2) + (indent * 4) + textPosVariance9);
-  pop();
-}
-
-function drawBG() {
-  bgBuffer.background(bg);
 }
 
 function drawPoemToBuffer() {
@@ -419,89 +308,33 @@ function drawPoemToBuffer() {
 
 function storeCanvas2() {
 
-  tempBuffer.background(255, 0.025);
-  tempBuffer.image(userDrawings, 0, 0);
-
   let img = userDrawings.get();
-  savedCanvases.push(img);
+  savedCanvases.unshift(img);
+  console.log(savedCanvases.length);
 
   while (savedCanvases.length > 15) {
-    savedCanvases.shift();
+    savedCanvases.pop();
   }
 
   userDrawings.clear();
 }
 
 //working but testing out new method
-function storeCanvas() {
-  let canvasData = cnv.elt.toDataURL("image/png");
-  loadImage(canvasData, img => {
-    savedCanvases.push(img);
-
-    while (savedCanvases.length > 15) {
-      savedCanvases.shift();
-    }
-  });
-  // let img = createImage(cnv.width, cnv.height);
-  // img.src = canvasData;
-  // savedCanvases.push(img);
-
-  // If you only want to keep 10-15 images:
-  // while (savedCanvases.length > 15) {
-  //   savedCanvases.shift(); // Remove the oldest drawing
-  // }
-}
-
-//working but testing out new method
 function drawSavedCanvases() {
   for (let i = 0; i < savedCanvases.length; i++) {
     // Calculate transparency and scale based on the canvas's position in the array
-    let transparency = map(i, 0, savedCanvases.length, 50, 255); // Adjust the range as needed
-    let scaleFactor;
-
-    if (savedCanvases.length === 1) {
-      scaleFactor = 0.9;
-    } else if (savedCanvases.length === 2) {
-      scaleFactor = 0.8;
-    } else if (savedCanvases.length === 3) {
-      scaleFactor = 0.75;
-    } else if (savedCanvases.length === 4) {
-      scaleFactor = 0.7;
-    } else if (savedCanvases.length === 5) {
-      scaleFactor = 0.65;
-    } else if (savedCanvases.length === 6) {
-      scaleFactor = 0.6;
-    } else if (savedCanvases.length === 7) {
-      scaleFactor = 0.55;
-    } else if (savedCanvases.length === 8) {
-      scaleFactor = 0.5;
-    } else if (savedCanvases.length === 9) {
-      scaleFactor = 0.45;
-    } else if (savedCanvases.length === 10) {
-      scaleFactor = 0.4;
-    } else if (savedCanvases.length === 11) {
-      scaleFactor = 0.37;
-    } else if (savedCanvases.length === 12) {
-      scaleFactor = 0.34;
-    } else if (savedCanvases.length === 13) {
-      scaleFactor = 0.31;
-    } else if (savedCanvases.length === 14) {
-      scaleFactor = 0.28;
-    } else if (savedCanvases.length === 15) {
-      scaleFactor = 0.25;
-    } else {
-      scaleFactor = map(i, 0, savedCanvases.length - 1, 0.3, 1);
-    }
-
-    // Apply the transparency
-    tint(255, transparency);
-
+    let scaleFactor = [0.9, 0.8, 0.75, 0.7, 0.65, 0.55, 0.5, 0.45, 0.4, 0.37, 0.34, 0.31, 0.28, 0.25, 0.22];
+    let transparency = 255 - (255/15 * i);
     // Apply the scale and draw the image
+
+
     push();
     translate(width / 2, height / 2);  // Center the scaling effect
-    scale(scaleFactor);
+    scale(scaleFactor[i]);
     // let offsetX = (width * (1 - scaleFactor)) / 2;
     // let offsetY = (height * (1 - scaleFactor)) / 2;
+    // tint(255, 10);
+    tint(0, 0, 100, 1);
     image(savedCanvases[i], - savedCanvases[i].width / 2, - savedCanvases[i].height / 2);  // Draw the image with its center aligned to the current translated point    // console.log(transparency, scaleFactor);
     pop();
   }
