@@ -2,6 +2,7 @@ $(document).ready(function () {
   // Initialize current div index
   var currentDivIndex = 0;
   var totalDivs = 3;
+  var isDiv2FirstVisit = true;
 
   // window.addEventListener("orientationchange", function () {
   //   if (window.orientation === 0) {
@@ -41,6 +42,12 @@ $(document).ready(function () {
       // Add the active class to the next div
       $("#div" + (currentDivIndex + 1)).addClass("active");
       console.log("Adding active class to div #" + (currentDivIndex + 1));
+
+      if (currentDivIndex === 1 && isDiv2FirstVisit) {
+        // Autoplay Vimeo video
+        $("#vimeoVideo").attr("src", "https://player.vimeo.com/video/132121995?h=02ebc099d2&color=ffffff&badge=0&autoplay=1");
+        isDiv2FirstVisit = false;
+      }
 
       // Fade in the next div
       $("#div" + (currentDivIndex + 1)).fadeTo(500, 1);

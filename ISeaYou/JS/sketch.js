@@ -189,6 +189,41 @@ function mousePressed() {
 
 }
 
+function storeCanvas2() {
+
+  let img = userDrawings.get();
+  savedCanvases.unshift(img);
+  console.log(savedCanvases.length);
+
+  while (savedCanvases.length > 15) {
+    savedCanvases.pop();
+  }
+
+  userDrawings.clear();
+}
+
+//working but testing out new method
+function drawSavedCanvases() {
+  for (let i = 0; i < savedCanvases.length; i++) {
+    // Calculate transparency and scale based on the canvas's position in the array
+    let scaleFactor = [0.9, 0.8, 0.75, 0.7, 0.65, 0.55, 0.5, 0.45, 0.4, 0.37, 0.34, 0.31, 0.28, 0.25, 0.22];
+    let transparency = 255 - (255/15 * i);
+    // Apply the scale and draw the image
+
+
+    push();
+    translate(width / 2, height / 2);  // Center the scaling effect
+    scale(scaleFactor[i]);
+    // let offsetX = (width * (1 - scaleFactor)) / 2;
+    // let offsetY = (height * (1 - scaleFactor)) / 2;
+    // tint(255, 10);
+    // tint(0, 0, 100, 1);
+    image(savedCanvases[i], - savedCanvases[i].width / 2, - savedCanvases[i].height / 2);  // Draw the image with its center aligned to the current translated point    // console.log(transparency, scaleFactor);
+    // background(0, 0, 100, 0.1);
+    pop();
+  }
+}
+
 function drawPoemToBuffer() {
   poemBuffer.clear();
   poemBuffer.push();
@@ -305,40 +340,6 @@ function drawPoemToBuffer() {
   poemBuffer.fill(213, 8, 82, 0.04);
   poemBuffer.text('como mar', (windowWidth / 2) + (newLine * 4) + textPosVariance6, (windowHeight / 2) + (indent * 4) + textPosVariance7);
   poemBuffer.pop();
-}
-
-function storeCanvas2() {
-
-  let img = userDrawings.get();
-  savedCanvases.unshift(img);
-  console.log(savedCanvases.length);
-
-  while (savedCanvases.length > 15) {
-    savedCanvases.pop();
-  }
-
-  userDrawings.clear();
-}
-
-//working but testing out new method
-function drawSavedCanvases() {
-  for (let i = 0; i < savedCanvases.length; i++) {
-    // Calculate transparency and scale based on the canvas's position in the array
-    let scaleFactor = [0.9, 0.8, 0.75, 0.7, 0.65, 0.55, 0.5, 0.45, 0.4, 0.37, 0.34, 0.31, 0.28, 0.25, 0.22];
-    let transparency = 255 - (255/15 * i);
-    // Apply the scale and draw the image
-
-
-    push();
-    translate(width / 2, height / 2);  // Center the scaling effect
-    scale(scaleFactor[i]);
-    // let offsetX = (width * (1 - scaleFactor)) / 2;
-    // let offsetY = (height * (1 - scaleFactor)) / 2;
-    // tint(255, 10);
-    tint(0, 0, 100, 1);
-    image(savedCanvases[i], - savedCanvases[i].width / 2, - savedCanvases[i].height / 2);  // Draw the image with its center aligned to the current translated point    // console.log(transparency, scaleFactor);
-    pop();
-  }
 }
 
 // anything below here is either old or not ready yet
