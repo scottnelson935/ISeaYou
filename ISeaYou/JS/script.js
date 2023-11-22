@@ -45,7 +45,7 @@ $(document).ready(function () {
 
       if (currentDivIndex === 1 && isDiv2FirstVisit) {
         // Autoplay Vimeo video
-        $("#vimeoVideo").attr("src", "https://player.vimeo.com/video/132121995?h=02ebc099d2&color=ffffff&badge=0&autoplay=1");
+        $("#vimeoVideo").attr("src", "https://player.vimeo.com/video/886620905?h=02ebc099d2&color=ffffff&badge=0&autoplay=1");
         isDiv2FirstVisit = false;
       }
 
