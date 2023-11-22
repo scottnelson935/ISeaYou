@@ -3,6 +3,7 @@ $(document).ready(function () {
   var currentDivIndex = 0;
   var totalDivs = 3;
   var isDiv2FirstVisit = true;
+  var firstNavPressed = false;
 
   // window.addEventListener("orientationchange", function () {
   //   if (window.orientation === 0) {
@@ -20,8 +21,26 @@ $(document).ready(function () {
   });
 
   $('#navigateFromFirstDiv').on('click touchstart', function () {
-    transitionToNextDiv();
+    if (!firstNavPressed) {
+      transitionToNextDiv();
+      firstNavPressed = true;
+    }
+    // transitionToNextDiv();
+
   });
+
+  // Function to update the background image
+  function updateBackgroundImage() {
+    if (currentDivIndex === 0) {
+        // If div1 is active, set the image background
+        $('body').css('background-image', 'url("../Media/image.jpeg")');
+    } else {
+        // If div2 or div3 are active, set the background to white
+        $('body').css('background-image', 'none');
+        $('body').css('background-color', 'white');
+    }
+  }
+
 
   // Function to transition to the next div
   function transitionToNextDiv() {
@@ -50,13 +69,16 @@ $(document).ready(function () {
       }
 
       // Fade in the next div
-      $("#div" + (currentDivIndex + 1)).fadeTo(500, 1);
+      $("#div" + (currentDivIndex + 1)).fadeTo(500, 1, function() {
+        updateBackgroundImage();
+      });
 
       // Play the video when div2 becomes active
       if (currentDivIndex === 1) {
         var video = document.getElementById("myVideo");
         video.play();
       }
+
     });
   }
 
@@ -81,7 +103,10 @@ $(document).ready(function () {
       console.log("Adding active class to div #" + (currentDivIndex + 1));
 
       // Fade in the previous div
-      $("#div" + (currentDivIndex + 1)).fadeTo(500, 1);
+      $("#div" + (currentDivIndex + 1)).fadeTo(500, 1, function() {
+        updateBackgroundImage();
+      });
+
     });
   }
 
