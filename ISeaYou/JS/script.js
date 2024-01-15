@@ -1,4 +1,73 @@
 $(document).ready(function () {
+
+  // Check if fullscreen is supported and handle it here
+  if (document.fullscreenEnabled) {
+    // Check for browsers to exclude
+    if (!navigator.userAgent.includes("Edge")) {
+      // User is not using Edge (exclude Edge)
+      // Display an overlay with instructions and buttons to go fullscreen or dismiss the warning
+      var overlayHtml = `
+        <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <div>
+            <h1>Welcome to Our Website</h1>
+            <p>This website works best in fullscreen mode, but it may not work in some browsers.</p>
+            <button id="goFullscreenButton">Go Fullscreen</button>
+            <button id="dismissButton">No Thanks</button>
+          </div>
+        </div>
+      `;
+      $('body').append(overlayHtml);
+
+      // When the user clicks the button to go fullscreen, request fullscreen
+      $('#goFullscreenButton').on('click', function () {
+        document.documentElement.requestFullscreen().then(function () {
+          // Redirect to the main page
+          window.location.href = 'index.html';
+        }).catch(function (error) {
+          console.error('Fullscreen request failed:', error);
+        });
+      });
+
+      // When the user clicks the "No Thanks" button, dismiss the warning and proceed
+      $('#dismissButton').on('click', function () {
+        // Remove the overlay
+        $('#overlay').remove();
+      });
+    } else {
+      // User is using a browser to be excluded (Edge)
+      // Display a message indicating that fullscreen may not work in this browser
+      var unsupportedBrowserMessage = `
+        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; justify-content: center; align-items: center;">
+          <p>Fullscreen may not work in your current browser.</p>
+          <button id="dismissButton">Dismiss</button>
+        </div>
+      `;
+      $('body').append(unsupportedBrowserMessage);
+
+      // When the user clicks the "Dismiss" button, remove the warning
+      $('#dismissButton').on('click', function () {
+        // Remove the warning message
+        $('#unsupportedBrowserMessage').remove();
+      });
+    }
+  } else {
+    // User's browser does not support fullscreen
+    // Display a message indicating that fullscreen is not supported
+    var noFullscreenSupportMessage = `
+      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; justify-content: center; align-items: center;">
+        <p>Your browser does not support fullscreen mode.</p>
+        <button id="dismissButton">Dismiss</button>
+      </div>
+    `;
+    $('body').append(noFullscreenSupportMessage);
+
+    // When the user clicks the "Dismiss" button, remove the warning
+    $('#dismissButton').on('click', function () {
+      // Remove the warning message
+      $('#noFullscreenSupportMessage').remove();
+    });
+  }
+
   // Initialize current div index
   var currentDivIndex = 0;
   var totalDivs = 3;
