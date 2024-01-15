@@ -7,12 +7,23 @@ $(document).ready(function () {
       // User is not using Edge (exclude Edge)
       // Display an overlay with instructions and buttons to go fullscreen or dismiss the warning
       var overlayHtml = `
-        <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.80); color: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 1.2rem">
           <div>
-            <h1>Welcome to Our Website</h1>
-            <p>This website works best in fullscreen mode, but it may not work in some browsers.</p>
-            <button id="goFullscreenButton">Go Fullscreen</button>
-            <button id="dismissButton">No Thanks</button>
+            <p>THIS WEBSITE WORKS BEST IN FULLSCREEN MODE
+            <br>
+            <br>Here are some considerations:
+            <br>1. We've only tested in Chrome-based browsers
+            <br>2. On a mobile device, browsers don't typically have a fullscreen option,
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;so, you can set a shorctut to this page as an icon on your homescreen:
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;Android---In Chrome browser, while on this page,
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;press the three dots in the upper corner and then select 'Add to Home screen'.
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;This will add an icon to your mobile device's Home screen
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;that will open this page in fullscreen mode.
+            <br>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;iPhone---In Chrome browser, while on this page,
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;press 'Share' and then 'Add to Home Screen'. (This may also work with Safari).
+            </p>
           </div>
         </div>
       `;
@@ -143,10 +154,10 @@ $(document).ready(function () {
       });
 
       // Play the video when div2 becomes active
-      if (currentDivIndex === 1) {
-        var video = document.getElementById("myVideo");
-        video.play();
-      }
+      // if (currentDivIndex === 1) {
+      //   var video = document.getElementById("myVideo");
+      //   video.play();
+      // }
 
     });
   }
@@ -205,4 +216,15 @@ $(document).ready(function () {
       top: e.pageY
     });
   })
+});
+
+// Listen for fullscreen change event
+document.addEventListener('fullscreenchange', function () {
+  if (document.fullscreenElement) {
+    // Fullscreen mode entered
+    console.log('Fullscreen mode entered');
+  } else {
+    // Fullscreen mode exited
+    console.log('Fullscreen mode exited');
+  }
 });

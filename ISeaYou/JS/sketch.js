@@ -41,7 +41,7 @@ let bg;
 // let poem = 'paso a paso\n\tpasó\n\t\tem paz\nen amore\nebb alone\nenamored\nabalone\nenamored\ncomo mar';
 
 function setup() {
-  bg = loadImage("../Media/imageWashedOut.jpeg");
+  // bg = loadImage("../Media/imageWashedOut.jpeg");
 
   let div3 = document.getElementById('div3');
   remInPixels = parseFloat(getComputedStyle(document.documentElement).fontSize);

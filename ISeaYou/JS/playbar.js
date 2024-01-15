@@ -1,9 +1,9 @@
-const video = document.getElementById('myVideo');
-const playbar = document.querySelector('.playbar');
+// const video = document.getElementById('myVideo');
+// const playbar = document.querySelector('.playbar');
 
-video.addEventListener('timeupdate', updatePlaybar);
+// video.addEventListener('timeupdate', updatePlaybar);
 
-function updatePlaybar() {
-    const progress = (video.currentTime / video.duration) * 100;
-    playbar.style.width = progress + '%';
-}
+// function updatePlaybar() {
+//     const progress = (video.currentTime / video.duration) * 100;
+//     playbar.style.width = progress + '%';
+// }
