@@ -65,6 +65,25 @@ body {
   border: 0;
 }
 
+#goToInstructions {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  display: none;
+}
+
+#goToCanvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  display: none; /* Initially hide the spans */
+  /* Add any other styling you need, such as background color or opacity */
+}
+
 html {
   cursor: none;
 }
