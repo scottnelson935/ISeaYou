@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function() {
+
 $(document).ready(function () {
 
   // Check if fullscreen is supported and handle it here
@@ -7,23 +9,27 @@ $(document).ready(function () {
       // User is not using Edge (exclude Edge)
       // Display an overlay with instructions and buttons to go fullscreen or dismiss the warning
       var overlayHtml = `
-        <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.80); color: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 1.2rem">
-          <div>
+        <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.80); color: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 1.6vw; font-family: Darker Grotesque, sans-serif; font-weight: 900;">
+          <div style="display: flex; flex-direction: column; align-items: center">
             <p>THIS WEBSITE WORKS BEST IN FULLSCREEN MODE
             <br>
-            <br>Here are some considerations:
             <br>1. We've only tested in Chrome-based browsers
-            <br>2. On a mobile device, browsers don't typically have a fullscreen option,
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;so, you can set a shorctut to this page as an icon on your homescreen:
+            <br>2. On a PC:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;Windows' system fullscreen key is F11 (or fn + F11)
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;macOS' system fullscreen methods are:
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;view->'Enter fullscreen'
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fn + F
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ctrl + Command + F
+            <br>3. Mobile browsers may lack a fullscreen option,
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;but adding this page as a web app to your Home screen will run it in fullscreen:
             <br>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;Android---In Chrome browser, while on this page,
             <br>&nbsp;&nbsp;&nbsp;&nbsp;press the three dots in the upper corner and then select 'Add to Home screen'.
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;This will add an icon to your mobile device's Home screen
-            <br>&nbsp;&nbsp;&nbsp;&nbsp;that will open this page in fullscreen mode.
             <br>
             <br>&nbsp;&nbsp;&nbsp;&nbsp;iPhone---In Chrome browser, while on this page,
             <br>&nbsp;&nbsp;&nbsp;&nbsp;press 'Share' and then 'Add to Home Screen'. (This may also work with Safari).
             </p>
+            <button id="dismissButton" style="background: white; color: black; box-shadow: 3px 3px 5px rgba(255,255,255,0.2); border-radius: 5px; font-size: 1.5rem; width: 50%">I understand</button>
           </div>
         </div>
       `;
@@ -227,4 +233,6 @@ document.addEventListener('fullscreenchange', function () {
     // Fullscreen mode exited
     console.log('Fullscreen mode exited');
   }
+});
+
 });
