@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   $(document).ready(function () {
 
+    // Initialize variables to prevent multiple button presses
+    var canNavigateToInstructions = true;
+    var canNavigateToCanvas = true;
+
+    var isTransitioning = false;
+
     // Check if fullscreen is supported and handle it here
     if (document.fullscreenEnabled) {
       // Check for browsers to exclude
@@ -11,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         var overlayHtml = `
         <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.80); color: white; z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; font-size: 1.6vw; font-family: Darker Grotesque, sans-serif; font-weight: 900;">
           <div style="display: flex; flex-direction: column; align-items: center">
+            <button id="dismissButton" style="background: white; color: black; box-shadow: 3px 3px 5px rgba(255,255,255,0.2); border-radius: 5px; font-size: 1.5rem; width: 50%">I understand</button>
             <p>THIS WEBSITE WORKS BEST IN FULLSCREEN MODE
             <br>
             <br>1. We've only tested in Chrome-based browsers
@@ -29,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
             <br>&nbsp;&nbsp;&nbsp;&nbsp;iPhone---In Chrome browser, while on this page,
             <br>&nbsp;&nbsp;&nbsp;&nbsp;press 'Share' and then 'Add to Home Screen'. (This may also work with Safari).
             </p>
-            <button id="dismissButton" style="background: white; color: black; box-shadow: 3px 3px 5px rgba(255,255,255,0.2); border-radius: 5px; font-size: 1.5rem; width: 50%">I understand</button>
           </div>
         </div>
       `;
@@ -53,36 +59,36 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         // User is using a browser to be excluded (Edge)
         // Display a message indicating that fullscreen may not work in this browser
-        var unsupportedBrowserMessage = `
-        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; justify-content: center; align-items: center;">
-          <p>Fullscreen may not work in your current browser.</p>
-          <button id="dismissButton">Dismiss</button>
-        </div>
-      `;
-        $('body').append(unsupportedBrowserMessage);
+        //   var unsupportedBrowserMessage = `
+        //   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; justify-content: center; align-items: center;">
+        //     <p>Fullscreen may not work in your current browser.</p>
+        //     <button id="dismissButton">Dismiss</button>
+        //   </div>
+        // `;
+        //   $('body').append(unsupportedBrowserMessage);
 
         // When the user clicks the "Dismiss" button, remove the warning
-        $('#dismissButton').on('click', function () {
-          // Remove the warning message
-          $('#unsupportedBrowserMessage').remove();
-        });
+        // $('#dismissButton').on('click', function () {
+        //   // Remove the warning message
+        //   $('#unsupportedBrowserMessage').remove();
+        // });
       }
     } else {
       // User's browser does not support fullscreen
       // Display a message indicating that fullscreen is not supported
-      var noFullscreenSupportMessage = `
-      <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; justify-content: center; align-items: center;">
-        <p>Your browser does not support fullscreen mode.</p>
-        <button id="dismissButton">Dismiss</button>
-      </div>
-    `;
-      $('body').append(noFullscreenSupportMessage);
+      //   var noFullscreenSupportMessage = `
+      //   <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; z-index: 1000; display: flex; justify-content: center; align-items: center;">
+      //     <p>Your browser does not support fullscreen mode.</p>
+      //     <button id="dismissButton">Dismiss</button>
+      //   </div>
+      // `;
+      // $('body').append(noFullscreenSupportMessage);
 
       // When the user clicks the "Dismiss" button, remove the warning
-      $('#dismissButton').on('click', function () {
-        // Remove the warning message
-        $('#noFullscreenSupportMessage').remove();
-      });
+      // $('#dismissButton').on('click', function () {
+      //   // Remove the warning message
+      //   $('#noFullscreenSupportMessage').remove();
+      // });
     }
 
     // Initialize current div index
@@ -99,11 +105,27 @@ document.addEventListener("DOMContentLoaded", function () {
     // }, false);
 
     $('#goToInstructions').on('click touchstart', function () {
-      window.transitionToPreviousDiv();
+      // Check if it's allowed to navigate
+      if (canNavigateToInstructions) {
+        canNavigateToInstructions = false; // Disable further presses temporarily
+        window.transitionToPreviousDiv();
+        // Enable navigation after a delay (adjust the delay duration as needed)
+        setTimeout(function () {
+          canNavigateToInstructions = true;
+        }, 1000); // 1 second delay
+      }
     });
 
     $('#goToCanvas').on('click touchstart', function () {
-      transitionToNextDiv();
+      // Check if it's allowed to navigate
+      if (canNavigateToCanvas) {
+        canNavigateToCanvas = false; // Disable further presses temporarily
+        transitionToNextDiv();
+        // Enable navigation after a delay (adjust the delay duration as needed)
+        setTimeout(function () {
+          canNavigateToCanvas = true;
+        }, 1000); // 1 second delay
+      }
     });
 
     $('#navigateFromFirstDiv').on('click touchstart', function () {
@@ -130,6 +152,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to transition to the next div
     function transitionToNextDiv() {
+
+      if (isTransitioning) return;
+
+      isTransitioning = true;
+
       // Fade out the current div
       $("#div" + (currentDivIndex + 1)).fadeTo(500, 0, function () {
         // Remove the active class from the current div
@@ -164,12 +191,21 @@ document.addEventListener("DOMContentLoaded", function () {
         //   var video = document.getElementById("myVideo");
         //   video.play();
         // }
-
       });
+
+      setTimeout(function () {
+        isTransitioning = false; // Reset the flag after the transition
+      }, 500); // Adjust the timeout based on your animation duration
+
     }
 
     // Function to transition to the previous div
     window.transitionToPreviousDiv = function () {
+
+      if (isTransitioning) return; // Check the flag
+
+      isTransitioning = true; // Set the flag
+
       // Fade out the current div
       $("#div" + (currentDivIndex + 1)).fadeTo(500, 0, function () {
         // Remove the active class from the current div
@@ -194,6 +230,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
       });
+      setTimeout(function () {
+        isTransitioning = false; // Reset the flag after the transition
+      }, 500); // Adjust the timeout based on your animation duration
     }
 
     // Keyboard event listener
@@ -235,29 +274,30 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  var touchstartX = 0;
-  var touchendX = 0;
+  // var touchstartX = 0;
+  // var touchendX = 0;
 
-  document.addEventListener("touchstart", function (event) {
-    touchstartX = event.touches[0].clientX;
-  });
+  // document.addEventListener("touchstart", function (event) {
+  //   touchstartX = event.touches[0].clientX;
+  // });
 
-  document.addEventListener("touchmove", function (event) {
-    touchendX = event.touches[0].clientX;
-  });
+  // document.addEventListener("touchmove", function (event) {
+  //   touchendX = event.touches[0].clientX;
+  // });
 
-  document.addEventListener("touchend", function () {
-    var swipeDirection = touchstartX - touchendX;
-    var swipeThreshold = 400;
+  // document.addEventListener("touchend", function () {
+  //   var swipeDirection = touchstartX - touchendX;
+  //   var swipeThreshold = 200;
 
-    if (swipeDirection > swipeThreshold) {
-      // Swipe left (transition to the next div)
-      transitionToPreviousDiv();
-    } else if (swipeDirection < -swipeThreshold) {
-      // Swipe right (transition to the previous div)
-      transitionToNextDiv();
-    }
-    // event.preventDefault(); // Prevent default touch behavior
-  });
+  //   if (swipeDirection > swipeThreshold) {
+  //     // Swipe left (transition to the next div)
+  //     transitionToPreviousDiv();
+      
+  //   } else if (swipeDirection < -swipeThreshold) {
+  //     // Swipe right (transition to the previous div)
+  //     transitionToNextDiv();
+  //   }
+  //   // event.preventDefault(); // Prevent default touch behavior
+  // });
 
 });

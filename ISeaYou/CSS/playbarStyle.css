@@ -3,7 +3,7 @@
     width: 100%;
     height: 0;
     /*Set the aspect ratio (16:9) based on your video's aspect ratio*/
-    padding-bottom: 56.25%; 
+    /* padding-bottom: 56.25%;  */
   }
   
   #myVideo {
