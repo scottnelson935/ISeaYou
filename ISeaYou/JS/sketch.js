@@ -24,7 +24,7 @@ let lineHeight;
 
 let origTextSize = 3;
 
-let spaceText = "Spacebar or touch here to wash over your canvas";
+let spaceText = "Space / touch here to dilute your canvas";
 let spaceChar = "␣";
 
 let savedCanvases = [];
