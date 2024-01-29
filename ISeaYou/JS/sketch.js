@@ -24,7 +24,7 @@ let lineHeight;
 
 let origTextSize = 3;
 
-let spaceText = "␣  Save canvas";
+let spaceText = "Spacebar or touch here to wash over your canvas";
 let spaceChar = "␣";
 
 let savedCanvases = [];
@@ -182,7 +182,7 @@ function mousePressed() {
     console.log("divTransitionClick!");
   }
 
-  if (mouseX > 33 && mouseX < 30 + 130 && mouseY > windowHeight - 27 && mouseY < windowHeight - 5) {
+  if (mouseX > 33 && mouseX < 30 + 300 && mouseY > windowHeight - 27 && mouseY < windowHeight - 5) {
     storeCanvas2();
     console.log("canvasStored!");
   }

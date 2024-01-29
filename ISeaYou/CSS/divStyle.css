@@ -213,9 +213,12 @@ h1 {
 }
 
 #video-arrows span {
-  display: inline-block;
+  display: flex;
   margin: 0 5px;
   padding: 5px;
+  justify-content: center;
+  align-items: flex-end;
+  top: 3vh;
   /* Other styles to make them look good and touchable */
 }
 
